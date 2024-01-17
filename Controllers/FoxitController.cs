@@ -34,7 +34,7 @@ namespace Poc.Foxit.Controllers
                     Console.WriteLine($"**LOCAL CONSOLE** Initialize fail. Error code: {error_code}");
                 }
 
-                Console.WriteLine("**LOCAL CONSOLE** Foxit Lib succesefully initialized.");
+                Console.WriteLine("**LOCAL CONSOLE** Foxit Lib successfully initialized.");
             }
             catch (Exception ex)
             {
