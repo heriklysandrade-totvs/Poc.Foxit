@@ -130,7 +130,7 @@ namespace Poc.Foxit.Controllers
                 using var doc = new PDFDoc(buffer, (uint)byte_buffer.Length);
                 doc.Load(null);
                 FillHashs(doc, headerText);
-
+                FillRubricas(doc);
                 var fileWriter = new FileWriterCustom();
                 doc.StartSaveAs(fileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
                 var result = fileWriter.GetFileBytes();
@@ -156,6 +156,11 @@ namespace Poc.Foxit.Controllers
                 text_size = 12.0f
             };
             doc.AddHeaderFooter(header);
+        }
+
+        private void FillRubricas(PDFDoc doc)
+        {
+           // throw new NotImplementedException();
         }
     }
 }
