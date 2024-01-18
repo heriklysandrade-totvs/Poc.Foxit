@@ -17,7 +17,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0.26-bookworm-slim-amd64 AS base
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
-RUN addgroup nonroot && adduser -S -G nonroot nonroot
+RUN useradd nonroot -m
 USER nonroot
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Poc.Foxit.Api.dll"]
