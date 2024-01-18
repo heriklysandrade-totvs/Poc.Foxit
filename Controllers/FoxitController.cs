@@ -71,6 +71,41 @@ namespace Poc.Foxit.Controllers
             }
         }
 
+        [SwaggerOperation("Open and returns a single file.")]
+        [HttpPost("open-callack")]
+        public IActionResult OpenCallbackFile(IFormFile formFile)
+        {
+            byte[] byte_buffer = formFile.GetBytesFromFormFile();
+            var frc = new FileReaderCustom(byte_buffer.Length);
+            frc.LoadFile(byte_buffer);
+
+            try
+            {
+                using var doc = new PDFDoc(frc, false);
+                var code = doc.Load(null);
+                if (code != ErrorCode.e_ErrSuccess)
+                {
+                    throw new InvalidOperationException($"Falha ao abrir: {code}");
+                }
+
+                var fileWriter = new FileWriterCustom();
+                doc.StartSaveAs(fileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
+                var result = fileWriter.GetFileBytes();
+
+                //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
+                System.IO.File.WriteAllBytes($@"C:\testpdf\{formFile.FileName}", result);
+
+                return Ok(new OkResponse(result));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+            }
+        }
+
         [SwaggerOperation("Merge various files in a foreach loop.")]
         [HttpPost("merge-add-pages")]
         public IActionResult MergeFilesAddPage(IFormFileCollection files, string fileName)
