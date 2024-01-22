@@ -37,4 +37,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Engines\Linux\" />
+    <Folder Include="Engines\Windows\" />
+  </ItemGroup>
+
 </Project>
