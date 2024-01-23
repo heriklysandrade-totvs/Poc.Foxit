@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="8.0">
+	<package>
+		<id3>1e2aafe2b9347726e39f6b063776c0ad</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+			<ruleset>
+				<id1>S22641f20f3bae896609f2795a5296dbb</id1>
+				<id2>S3d57a962a44cfb27c10d3b284ee0bd25</id2>
+				<id3>026962d9ab8963a3c383b8a8320871f2</id3>
+				<id4>59dc6ac71273129612f4f0d8ddf169ff</id4>
+				<name>SSS_RULESET_DEF_NAME</name>
+				<comment>SSS_RULESET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<rules>
+				</rules>
+			</ruleset>
+		</rulesets>
+		<fixups>
+		</fixups>
+		<fixupsets>
+		</fixupsets>
+		<profiles>
+			<profile>
+				<id1>Paf5389d7305ea8930ebccea6fef26364</id1>
+				<id2>P2d012fbad3dd8449379c8a9a166c66dd</id2>
+				<id3>1a73d55483d1505801401708bca401e0</id3>
+				<id4>065de22f7f2b7afe645e3226fafd5a04</id4>
+				<name>P_6_VerifycompliancewithPDFX1a</name>
+				<comment>P_6_VerifycompliancewithPDFX1a</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas pdfToolbox 4</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20060413151016+01&apos;00&apos;</creation>
+				<modification>D:20090218151918+01&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<wizard>
+					<check name="PRCWzXComp_PDFDocument" check_severity="0">
+						<data name="PDFX1A2001">1</data>
+						<data name="PDFX1A2003">1</data>
+						<data name="PDFX32002">0</data>
+						<data name="PDFX32003">0</data>
+						<data name="PDFX4">0</data>
+						<data name="PDFX4p">0</data>
+						<data name="PDFX5g">0</data>
+						<data name="PDFX5n">0</data>
+						<data name="PDFX5pg">0</data>
+					</check>
+				</wizard>
+				<rulesets>
+					<ruleset>S22641f20f3bae896609f2795a5296dbb</ruleset>
+				</rulesets>
+				<fixupsets>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>

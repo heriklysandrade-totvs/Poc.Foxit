@@ -47,8 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Engines\Linux\" />
-    <Folder Include="Engines\Windows\" />
+    <Folder Include="Engines\Compliance\Linux\" />
+    <Folder Include="Engines\Compliance\Windows\" />
+    <Folder Include="Engines\HtmlConversion\Linux\" />
+    <Folder Include="Engines\HtmlConversion\Windows\" />
   </ItemGroup>
 
 </Project>

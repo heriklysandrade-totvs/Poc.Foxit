@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="14.0">
+	<package>
+		<id3>ba2530df7c22a2e39757cb3e743385d5</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<resources>
+		</resources>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+		</rulesets>
+		<fixups>
+		</fixups>
+		<fixupsets>
+		</fixupsets>
+		<actions>
+		</actions>
+		<profiles>
+			<profile>
+				<id1>P46163bc486051d161869975e4ff16e74</id1>
+				<id2>P9b852e95981be12332b22b3e7e8950bb</id2>
+				<id3>2a12c97d28f7d70cae0766f6a8deb52d</id3>
+				<id4>3407ff343cf3c9c9ac08e2b4308658ad</id4>
+				<name>P_14_VerifycompliancewithPDFX5n</name>
+				<comment>P_14_VerifycompliancewithPDFX5n</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas software</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20150622062616+02&apos;00&apos;</creation>
+				<modification>D:20150622062617+02&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<pdfstdemb>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond>7C Indigo TAC370 (ColorLogic)</outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+					<afrelationship set_relationship="0"></afrelationship>
+				</pdfstdemb>
+				<wizard>
+					<check name="PRCWzXComp_PDFDocument" check_severity="0">
+						<data name="PDFX1A2001">0</data>
+						<data name="PDFX1A2003">0</data>
+						<data name="PDFX32002">0</data>
+						<data name="PDFX32003">0</data>
+						<data name="PDFX4">0</data>
+						<data name="PDFX4p">0</data>
+						<data name="PDFX5g">0</data>
+						<data name="PDFX5n">1</data>
+						<data name="PDFX5pg">0</data>
+					</check>
+				</wizard>
+				<rulesets>
+				</rulesets>
+				<fixupsets>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<metaprofs>
+		</metaprofs>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>
