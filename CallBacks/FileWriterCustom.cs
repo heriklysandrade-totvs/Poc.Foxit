@@ -27,12 +27,13 @@ namespace Poc.Foxit.CallBacks
 
         public override bool Flush()
         {
+            fileMemoryStream.Flush();
             return true;
         }
 
         public override void Release()
         {
-
+            fileMemoryStream.Dispose();
         }
 
         public byte[] GetFileBytes()
