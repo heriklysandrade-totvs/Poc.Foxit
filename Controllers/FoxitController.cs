@@ -2,11 +2,13 @@
 using foxit.pdf;
 using Microsoft.AspNetCore.Mvc;
 using Poc.Foxit.Api.Requests;
+using Poc.Foxit.Api.Resources;
 using Poc.Foxit.Api.Responses;
 using Poc.Foxit.CallBacks;
 using Poc.Foxit.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 using static foxit.pdf.PDFDoc;
+using foxit.addon.conversion;
 
 namespace Poc.Foxit.Controllers
 {
@@ -22,13 +24,14 @@ namespace Poc.Foxit.Controllers
         ////KEYS LINUX ALSO WORKS ON WINDOWS
         private readonly string sn = "Yuxay2IBiZFQdnbPWWm6PzjrzHMAxgU/0bvdTs2ax0gGAp21btiJXQ==";
         private readonly string key = "8f3gFUOMvWsN+XetmKjesLrtEITlig6PK1SEzio0De6nF5lhXOGH5OPngzhkBbuEpb4RGJAqjEuPZZHbP8TZSd+U31C14rAdz8K5nEB7BV8WlFyRi+GM+IBCm8kBOThQCvXU+UZcASoFhq0TZwmSGrHGoft7M3Oi9RASaeS48TlzuxDxgUFR2fWGcHRzuOIx1XQ8FvLjJ4c3VoPq0IHJ61XE0Ad/G8Xbdr1apVAqMXzDm3lY9gf8+/Ffos3udWH/Qqwm09FtXluLjEHYf9luWjJ8fYsYcdgwF5dKlQpCC/rntDwt9PZVxC9ikc5WiZAgrlUW0GPWFRajfel7a4WRIdNXoRLLYSascBlyhrIf2G7h3OKQsLHIO4/ITYOasnUdHEHxaB5sHhI9B0g9QPMh8Zf9R5xVwu3WrG9eRlFo5cNmfJZtakBbo4tWKWGp2fENX/ssBHRNyq27bWgK5B4HFRePLToFy/GQvclAV57D3I2UxlZRSm31qWhcg85e3dfwMHr9+70wbS+RfBHr9EX0RWiedUhG4vDGCeGTKiw1jJ5iWWka+NH1SCyuzPMIDbmg3G+GB0iqHiEScFjCutwGHpGo+ioe5zRo9GqMextorTVbsE16+Eof1kKF+dzDt0SoE6nR3EMwNeS1xW8a7WG0iJX1Ew1mmSEBX5d5fpPxFjjRtwPJX47gBlwjQGv2eCXjOgVk1r1jZqkoga8+8M71co7dgzfN92LAGDexuCVOPCLUO7oGt5jgGy9VG9qQVOVHW1Qpt8RCtZACa5dqTVg+vkv6M+Cih8+/bE3u+x3nMLJMpMUXXhUgC5/zskXYCl/Zb3Nq9cM0wHafRybfYoQ8zhLTqeqzYGOB5qrxrYxlOaoWrmkIsH+Pllnp04r32rGkKPcd5rkmuubueByVSgh4gw9IwqKdqOJCbkTF5oTCbZ5cbV66VbSs3PY7CZwdiicX7wtvvR2EE9Ijmut9WjJdoilqYl4WC4RA/Zz52XoHhra/wyScoDV/hKXFtwbL2Vs5aJdDnrleBFp+sQCOajmU1i2lwKQdi2V+IdlJ3VsjxqZtpd/3LAvfXQ8P0yKM09J9gCdOiIcyv05Lg28yjjV1ynpQ0VlJTW5rxqQcTZr04S4lwl2qWc5CV2v0Hac1YcmSvv+uFOabHdi/FDQi1gJYDOCw+6xgVke1IuN7b7eC2S9fq8Z6dbxDPvQxTcFP9jkgOg1EgPhnOIS4ZLfv/78N8iGZB2nuoH/od/QP65zqfrrUqlt73iMSMwdef8tV5hBIxBPNb7J1a+aWbN8nVqFPIxiXNC61Z+dYbSb8ayc8ZrRszOo5svAwozW2GuQf5LvNo7rUbXuw2aJu+FB9cnKx3Djk4OnsiUTCjEFMZQ==";
+        private readonly PlatformID platformID;
 
         public FoxitController()
         {
             try
             {
                 Console.WriteLine("**LOCAL CONSOLE** Initializing foxit lib.");
-
+                platformID = Environment.OSVersion.Platform;
                 ErrorCode error_code = Library.Initialize(sn, key);
                 if (error_code != ErrorCode.e_ErrSuccess)
                 {
@@ -44,50 +47,53 @@ namespace Poc.Foxit.Controllers
         }
 
         [SwaggerOperation("Open and returns a single file.")]
-        [HttpPost("open")]
-        public IActionResult OpenFile(IFormFile formFile)
+        [HttpPost("open-callack")]
+        public IActionResult OpenFileCallback(IFormFile formFile)
         {
             byte[] byte_buffer = formFile.GetBytesFromFormFile();
-            IntPtr buffer = System.Runtime.InteropServices.Marshal.AllocHGlobal(byte_buffer.Length);
+            var frc = new FileReaderCustom(byte_buffer);
 
             try
             {
-                System.Runtime.InteropServices.Marshal.Copy(byte_buffer, 0, buffer, byte_buffer.Length);
-                using var doc = new PDFDoc(buffer, (uint)byte_buffer.Length);
-                doc.Load(null);
+                using var doc = new PDFDoc(frc, false);
+                var code = doc.Load(null);
+                if (code != ErrorCode.e_ErrSuccess)
+                {
+                    throw new InvalidOperationException($"Falha ao abrir: {code}");
+                }
 
                 var fileWriter = new FileWriterCustom();
                 doc.StartSaveAs(fileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
                 var result = fileWriter.GetFileBytes();
+
+                //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
+                System.IO.File.WriteAllBytes($@"C:\testpdf\{formFile.FileName}", result);
+
                 return Ok(new OkResponse(result));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                System.Runtime.InteropServices.Marshal.FreeHGlobal(buffer);
-            }
         }
 
         [SwaggerOperation("Merge various files in a foreach loop.")]
-        [HttpPost("merge-add-pages")]
-        public IActionResult MergeFilesAddPage(IFormFileCollection files, string fileName)
+        [HttpPost("merge-callback")]
+        public IActionResult MergeFilesCallback(IFormFileCollection files, string fileName)
         {
-            var finalDoc = new PDFDoc();
+            using var finalDoc = new PDFDoc();
             finalDoc.Load(null);
 
             foreach (var file in files)
             {
-                byte[] byte_buffer = file.GetBytesFromFormFile();
-                IntPtr buffer = System.Runtime.InteropServices.Marshal.AllocHGlobal(byte_buffer.Length);
-
                 try
                 {
-                    System.Runtime.InteropServices.Marshal.Copy(byte_buffer, 0, buffer, byte_buffer.Length);
-                    using var doc = new PDFDoc(buffer, (uint)byte_buffer.Length);
+                    var fileBytes = file.GetBytesFromFormFile();
+                    using var frc = new FileReaderCustom(fileBytes);
+
+                    using var doc = new PDFDoc(frc, false);
                     doc.Load(null);
+
                     var import_ranges = new foxit.common.Range(0, doc.GetPageCount() - 1, foxit.common.Range.Filter.e_All);
                     var destIndex = finalDoc.GetPageCount();
                     var progress = finalDoc.StartImportPages(destIndex, doc, (int)ImportPageFlags.e_ImportFlagNormal, "teste", import_ranges, null);
@@ -102,49 +108,148 @@ namespace Poc.Foxit.Controllers
                 {
                     throw;
                 }
-                finally
-                {
-                    System.Runtime.InteropServices.Marshal.FreeHGlobal(buffer);
-                    byte_buffer = null;
-                }
             }
 
-            var finalDocFileWriter = new FileWriterCustom();
+            using var finalDocFileWriter = new FileWriterCustom();
             finalDoc.StartSaveAs(finalDocFileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
 
             var result = finalDocFileWriter.GetFileBytes();
 
-            finalDoc.Dispose();
+            //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
+            System.IO.File.WriteAllBytes($@"C:\testpdf\{fileName}.pdf", result);
+
             return Ok(new OkResponse(result));
         }
 
-        [SwaggerOperation("Open a file and add a custom header.")]
-        [HttpPost("manifest")]
+        [SwaggerOperation("Open a file, add a custom header and images on the bottom of the pages.")]
+        [HttpPost("manifest-callback")]
         public IActionResult ManifestFile([FromForm] BasicResquest basicRequest)
         {
-            byte[] byte_buffer = basicRequest.Files[0].GetBytesFromFormFile();
-            IntPtr buffer = System.Runtime.InteropServices.Marshal.AllocHGlobal(byte_buffer.Length);
-
             try
             {
-                System.Runtime.InteropServices.Marshal.Copy(byte_buffer, 0, buffer, byte_buffer.Length);
-                using var doc = new PDFDoc(buffer, (uint)byte_buffer.Length);
+                var fileBytes = basicRequest.Files[0].GetBytesFromFormFile();
+                var frc = new FileReaderCustom(fileBytes);
+
+                var doc = new PDFDoc(frc, false);
                 doc.Load(null);
                 FillHashs(doc, basicRequest.HeaderText);
                 FillRubricas(doc);
+                AddProtocolPage(doc);
                 var fileWriter = new FileWriterCustom();
                 doc.StartSaveAs(fileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
                 var result = fileWriter.GetFileBytes();
+
+                //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
+                System.IO.File.WriteAllBytes($@"C:\testpdf\{basicRequest.FileName}.pdf", result);
+
+                return Ok(new OkResponse(result));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [SwaggerOperation("Convert an html resource into a PDF.")]
+        [HttpPost("convert-html-callack")]
+        public IActionResult ConvertHTMLCallback()
+        {
+            var enginePath = GetEnginePath();
+
+            if (string.IsNullOrWhiteSpace(enginePath))
+                return BadRequest($"OS: {platformID} not supported");
+
+            try
+            {
+                var pdf_setting_data = new HTML2PDFSettingData
+                {
+                    is_convert_link = true,
+                    is_generate_tag = true,
+                    to_generate_bookmarks = true,
+                    rotate_degrees = 0,
+                    page_height = 640,
+                    page_width = 900,
+                    page_mode = HTML2PDFSettingData.HTML2PDFPageMode.e_PageModeSinglePage,
+                    scaling_mode = HTML2PDFSettingData.HTML2PDFScalingMode.e_ScalingModeScale,
+                    to_print_background = true,
+                    to_optimize_tag_tree = false,
+                    media_style = HTML2PDFSettingData.HTML2PDFMediaStyle.e_MediaStyleScreen
+                };
+
+                var fileWriter = new FileWriterCustom();
+                var cookieFR = new FileReaderCustom(new byte[0]);
+
+                //foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, string.Empty, pdf_setting_data, @"C:\testpdf\", 60);
+                foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, cookieFR, pdf_setting_data, fileWriter, 60);
+                var result = fileWriter.GetFileBytes();
+
+                //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
+                System.IO.File.WriteAllBytes(@"C:\testpdf\testFromHtml.pdf", result);
+
                 return Ok(new OkResponse(result));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
+        }
+
+        [SwaggerOperation("Convert office files into PDFs.")]
+        [HttpPost("convert-office-callack")]
+        public IActionResult ConvertOfficeCallback(IFormFile formFile)
+        {
+            try
             {
-                System.Runtime.InteropServices.Marshal.FreeHGlobal(buffer);
+                using (var word_convert_setting_data = new Word2PDFSettingData())
+                {
+                    foxit.addon.conversion.Convert.FromWord("local_path", "file_password", "save_path", word_convert_setting_data);
+                }
+
+                return Ok(new OkResponse());
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private string GetEnginePath()
+        {
+            switch (platformID)
+            {
+                case PlatformID.Win32S:
+                    break;
+                case PlatformID.Win32Windows:
+                    break;
+                case PlatformID.Win32NT:
+                    break;
+                case PlatformID.WinCE:
+                    break;
+                case PlatformID.Unix:
+                    break;
+                case PlatformID.Xbox:
+                    break;
+                case PlatformID.MacOSX:
+                    break;
+                case PlatformID.Other:
+                    break;
+                default:
+                    break;
+            }
+
+            if (platformID == PlatformID.Unix)
+            {
+                return "./Poc.Foxit/Engines/Linux";
+            }
+            else
+            {
+                return "./Poc.Foxit/Engines/Windows";
+            }
+        }
+
+        private void AddProtocolPage(PDFDoc doc)
+        {
+
         }
 
         private static void FillHashs(PDFDoc doc, string headerText)
@@ -161,7 +266,26 @@ namespace Poc.Foxit.Controllers
 
         private void FillRubricas(PDFDoc doc)
         {
-            // throw new NotImplementedException();
+            const int space = 10;
+            const int width = 50;
+
+            var bytesRubrica = ResourceImages.rubrica;
+            var fcrRubrica = new FileReaderCustom(bytesRubrica);
+            var rubrica = new Image(fcrRubrica);
+
+            for (int i = 0; i < doc.GetPageCount(); i++)
+            {
+                var page = doc.GetPage(i);
+                page.StartParse((int)PDFPage.ParseFlags.e_ParsePageNormal, null, false);
+
+                var position = new foxit.common.fxcrt.PointF(space, space);
+                for (int j = 0; j < 5; j++)
+                {
+                    page.AddImage(rubrica, 0, position, width, 50, true);
+
+                    position.x += width + space;
+                }
+            }
         }
     }
 }

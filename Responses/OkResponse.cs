@@ -2,6 +2,11 @@
 {
     public class OkResponse
     {
+        public OkResponse()
+        {
+
+        }
+
         public OkResponse(object data)
         {
             Data = data;

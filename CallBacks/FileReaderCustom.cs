@@ -5,18 +5,13 @@ namespace Poc.Foxit.CallBacks
 {
     public class FileReaderCustom : FileReaderCallback
     {
-        private MemoryStream? fileMemoryStream;
+        private readonly MemoryStream fileMemoryStream;
         private readonly long offset_ = 0;
 
-        public FileReaderCustom(long offset)
-        {
-            offset_ = offset;
-        }
-
-        public bool LoadFile(byte[] fileBytes)
+        public FileReaderCustom(byte[] fileBytes)
         {
             fileMemoryStream = new MemoryStream(fileBytes);
-            return true;
+            offset_ = fileBytes.Length;
         }
 
         public override long GetSize()
@@ -36,7 +31,7 @@ namespace Poc.Foxit.CallBacks
 
         public override void Release()
         {
-            fileMemoryStream.Close();
+            fileMemoryStream.Dispose();
         }
     }
 }
