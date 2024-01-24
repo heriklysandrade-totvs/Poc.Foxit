@@ -9,6 +9,7 @@ using Poc.Foxit.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 using static foxit.pdf.PDFDoc;
 using foxit.addon.conversion;
+using foxit.addon.compliance;
 
 namespace Poc.Foxit.Controllers
 {
@@ -36,6 +37,14 @@ namespace Poc.Foxit.Controllers
                 if (error_code != ErrorCode.e_ErrSuccess)
                 {
                     Console.WriteLine($"**LOCAL CONSOLE** Initialize fail. Error code: {error_code}");
+                    Library.Release();
+                }
+                else
+                {
+                    //This returns -> C:\\TAE_Repos\\Poc.Foxit\\Logs
+                    Library.SetLogFile("C:\\testpdf\\logs");
+                    ComplianceEngine.SetLanguage("Portuguese");
+                    ComplianceEngine.SetTempFolderPath("C:\\testpdf\\Compliance\\Temp");
                 }
 
                 Console.WriteLine("**LOCAL CONSOLE** Foxit Lib successfully initialized.");
@@ -43,6 +52,7 @@ namespace Poc.Foxit.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"**LOCAL CONSOLE** Unhandled exception while initializing Foxit lib: {ex.Message}");
+                Library.Release();
             }
         }
 
@@ -50,11 +60,11 @@ namespace Poc.Foxit.Controllers
         [HttpPost("open-callack")]
         public IActionResult OpenFileCallback(IFormFile formFile)
         {
-            byte[] byte_buffer = formFile.GetBytesFromFormFile();
-            var frc = new FileReaderCustom(byte_buffer);
-
             try
             {
+                byte[] byte_buffer = formFile.GetBytesFromFormFile();
+                var frc = new FileReaderCustom(byte_buffer);
+
                 using var doc = new PDFDoc(frc, false);
                 var code = doc.Load(null);
                 if (code != ErrorCode.e_ErrSuccess)
@@ -73,7 +83,11 @@ namespace Poc.Foxit.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return BadRequest(new BadRequest(ex.Message));
+            }
+            finally
+            {
+                Library.Release();
             }
         }
 
@@ -106,7 +120,8 @@ namespace Poc.Foxit.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    Library.Release();
+                    return BadRequest(new BadRequest(ex.Message));
                 }
             }
 
@@ -117,6 +132,8 @@ namespace Poc.Foxit.Controllers
 
             //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
             System.IO.File.WriteAllBytes($@"C:\testpdf\{fileName}.pdf", result);
+
+            Library.Release();
 
             return Ok(new OkResponse(result));
         }
@@ -142,11 +159,13 @@ namespace Poc.Foxit.Controllers
                 //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
                 System.IO.File.WriteAllBytes($@"C:\testpdf\{basicRequest.FileName}.pdf", result);
 
+                Library.Release();
+
                 return Ok(new OkResponse(result));
             }
             catch (Exception ex)
             {
-                throw;
+                return BadRequest(new BadRequest(ex.Message));
             }
         }
 
@@ -154,46 +173,50 @@ namespace Poc.Foxit.Controllers
         [HttpPost("convert-html-callack")]
         public IActionResult ConvertHTMLCallback()
         {
-            var enginePath = GetEnginePath();
-
-            if (string.IsNullOrWhiteSpace(enginePath))
-                return BadRequest($"OS: {platformID} not supported");
-
             try
             {
+                var enginePath = GetEnginePath();
+
+                if (string.IsNullOrWhiteSpace(enginePath))
+                    return BadRequest($"OS: {platformID} not supported");
+
                 var pdf_setting_data = new HTML2PDFSettingData
                 {
-                    is_convert_link = true,
-                    is_generate_tag = true,
-                    to_generate_bookmarks = true,
-                    rotate_degrees = 0,
-                    page_height = 640,
-                    page_width = 900,
-                    page_mode = HTML2PDFSettingData.HTML2PDFPageMode.e_PageModeSinglePage,
-                    scaling_mode = HTML2PDFSettingData.HTML2PDFScalingMode.e_ScalingModeScale,
-                    to_print_background = true,
-                    to_optimize_tag_tree = false,
-                    media_style = HTML2PDFSettingData.HTML2PDFMediaStyle.e_MediaStyleScreen
+                    //is_convert_link = true,
+                    //is_generate_tag = true,
+                    //to_generate_bookmarks = true,
+                    //rotate_degrees = 0,
+                    //page_height = 640,
+                    //page_width = 900,
+                    //page_mode = HTML2PDFSettingData.HTML2PDFPageMode.e_PageModeSinglePage,
+                    //scaling_mode = HTML2PDFSettingData.HTML2PDFScalingMode.e_ScalingModeScale,
+                    //to_print_background = true,
+                    //to_optimize_tag_tree = false,
+                    //media_style = HTML2PDFSettingData.HTML2PDFMediaStyle.e_MediaStyleScreen
                 };
 
                 var fileWriter = new FileWriterCustom();
-                var cookieFR = new FileReaderCustom(new byte[0]);
+                var cookieFR = new FileReaderCustom(Array.Empty<byte>());
 
-                //foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, string.Empty, pdf_setting_data, @"C:\testpdf\", 60);
-                foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, cookieFR, pdf_setting_data, fileWriter, 60);
+                foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, string.Empty, pdf_setting_data, @"C:\testpdf\", 60);
+                //foxit.addon.conversion.Convert.FromHTML(ResourceHTMLs.TestHTML, enginePath, cookieFR, pdf_setting_data, fileWriter, 60);
                 var result = fileWriter.GetFileBytes();
 
                 //TODO: REMOVER CÓDIGO DE TESTES ANTES DE COMPLETAR PR
                 System.IO.File.WriteAllBytes(@"C:\testpdf\testFromHtml.pdf", result);
 
+                Library.Release();
+
                 return Ok(new OkResponse(result));
             }
             catch (Exception ex)
             {
-                throw ex;
+                Library.Release();
+                return BadRequest(new BadRequest(ex.Message));
             }
         }
 
+        //Doesn't have support for using Read and Write Callbacks yet (23-01-2024).
         [SwaggerOperation("Convert office files into PDFs.")]
         [HttpPost("convert-office-callack")]
         public IActionResult ConvertOfficeCallback(IFormFile formFile)
@@ -205,51 +228,60 @@ namespace Poc.Foxit.Controllers
                     foxit.addon.conversion.Convert.FromWord("local_path", "file_password", "save_path", word_convert_setting_data);
                 }
 
-                return Ok(new OkResponse());
+                Library.Release();
+
+                return Ok(new OkResponse(string.Empty));
             }
             catch (Exception ex)
             {
-                throw ex;
+                Library.Release();
+                return BadRequest(new BadRequest(ex.Message));
+            }
+        }
+
+        //Doesn't have support for using Read and Write Callbacks yet (23-01-2024).
+        [SwaggerOperation("Convert normal PDfs into PDF-A.")]
+        [HttpPost("compliance-pdfa-callack")]
+        public IActionResult CompliancePdfACallback()
+        {
+            try
+            {
+                var input_file = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Resources", "16pags_90KB.pdf");
+                var save_pdf_path = "C:\\testpdf";
+
+                var error_code = ComplianceEngine.Initialize(@"C:\TAE_Repos\Poc.Foxit\Engines\Compliance\Windows", "");
+                if (error_code != ErrorCode.e_ErrSuccess)
+                {
+                    return BadRequest(new BadRequest("Fail to initialize compliance engine: " + error_code));
+                }
+                using (var pdfa_compliance = new PDFACompliance())
+                {
+                    pdfa_compliance.ConvertPDFFile(input_file, save_pdf_path, PDFACompliance.Version.e_VersionPDFA2b, null);
+                }
+
+                ComplianceEngine.Release();
+                Library.Release();
+
+                return Ok(new OkResponse(string.Empty));
+            }
+            catch (Exception ex)
+            {
+                Library.Release();
+                return BadRequest(new BadRequest(ex.Message));
             }
         }
 
         private string GetEnginePath()
         {
-            switch (platformID)
+            string path = platformID switch
             {
-                case PlatformID.Win32S:
-                    break;
-                case PlatformID.Win32Windows:
-                    break;
-                case PlatformID.Win32NT:
-                    break;
-                case PlatformID.WinCE:
-                    break;
-                case PlatformID.Unix:
-                    break;
-                case PlatformID.Xbox:
-                    break;
-                case PlatformID.MacOSX:
-                    break;
-                case PlatformID.Other:
-                    break;
-                default:
-                    break;
-            }
+                PlatformID.Win32S or PlatformID.Win32Windows or PlatformID.Win32NT or PlatformID.WinCE => @"C:\testpdf\HtmlConversion\Windows",
+                PlatformID.Unix => @"C:\testpdf\HtmlConversion\Linux",
+                PlatformID.Xbox or PlatformID.MacOSX or PlatformID.Other => string.Empty,
+                _ => string.Empty,
+            };
 
-            if (platformID == PlatformID.Unix)
-            {
-                return "./Poc.Foxit/Engines/Linux";
-            }
-            else
-            {
-                return "./Poc.Foxit/Engines/Windows";
-            }
-        }
-
-        private void AddProtocolPage(PDFDoc doc)
-        {
-
+            return path;
         }
 
         private static void FillHashs(PDFDoc doc, string headerText)
