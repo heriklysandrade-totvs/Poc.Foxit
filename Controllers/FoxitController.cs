@@ -151,7 +151,6 @@ namespace Poc.Foxit.Controllers
                 doc.Load(null);
                 FillHashs(doc, basicRequest.HeaderText);
                 FillRubricas(doc);
-                AddProtocolPage(doc);
                 var fileWriter = new FileWriterCustom();
                 doc.StartSaveAs(fileWriter, (int)PDFDoc.SaveFlags.e_SaveFlagNoOriginal, null);
                 var result = fileWriter.GetFileBytes();
