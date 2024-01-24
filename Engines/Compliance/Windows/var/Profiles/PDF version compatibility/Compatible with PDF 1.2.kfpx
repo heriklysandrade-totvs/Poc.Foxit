@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="16.0">
+	<package>
+		<id3>8212dd3fb8aaeaa261bcc767ecae8acf</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<resources>
+		</resources>
+		<variables>
+		</variables>
+		<conditions>
+			<condition>
+				<id1>C321dcf85527a5a9ccfd3efb070901711</id1>
+				<id2>C92453fee144e9d17bb8254f10a44c81c</id2>
+				<id3>6a6d2460f4f2628190bdb8fad9008963</id3>
+				<id4>b29107bdaaabcc50c1b7326e325d1e69</id4>
+				<id5>C92453fee144e9d17bb8254f10a44c81c</id5>
+				<name></name>
+				<comment></comment>
+				<flags user_units="1" edit="1" visible="1"></flags>
+				<atom>
+					<group>Group::DOC</group>
+					<token>DOC::PDFVersion</token>
+					<operator>OP::greater</operator>
+					<data>
+						<num>
+							<value>1.2</value>
+							<tolerance>0</tolerance>
+						</num>
+					</data>
+				</atom>
+			</condition>
+		</conditions>
+		<rules>
+			<rule>
+				<id1>R4fa2d626ead4b5e810bdfd3bcafb28d7</id1>
+				<id2>Rc12f42b6ad53b7354ec818554e91c3bb</id2>
+				<id3>d7d50c51a46199133858d015ec075a75</id3>
+				<id4>09a79083af9fbd9e7d377a687bab62f1</id4>
+				<id5>Rc12f42b6ad53b7354ec818554e91c3bb</id5>
+				<name>RRR_PDFversionnewerthan12</name>
+				<comment>RRR_PDFversionnewerthan12</comment>
+				<flags analysis="17" condition_logic="0" ignore_objects="0" edit="1" visible="1" dict="1"></flags>
+				<creation>D:20190924061542+02&apos;00&apos;</creation>
+				<modification>D:20190924061555+02&apos;00&apos;</modification>
+				<report_no_match></report_no_match>
+				<conditions>
+					<condition>C321dcf85527a5a9ccfd3efb070901711</condition>
+				</conditions>
+			</rule>
+		</rules>
+		<rulesets>
+			<ruleset>
+				<id1>Seb3989068541541a09c9b71317718503</id1>
+				<id2>Sd44694d53f5e738139721cd9d6a135bc</id2>
+				<id3>3f99c1f26cea6b72c704911227e35ee5</id3>
+				<id4>b6997a5c68adb02cd54670ba20f8e173</id4>
+				<id5>Sd44694d53f5e738139721cd9d6a135bc</id5>
+				<name>SSS_RULESET_DEF_NAME</name>
+				<comment>SSS_RULESET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<rules>
+					<rule check_severity="1" check_timing="2">R4fa2d626ead4b5e810bdfd3bcafb28d7</rule>
+				</rules>
+			</ruleset>
+		</rulesets>
+		<fixups>
+		</fixups>
+		<fixupsets>
+		</fixupsets>
+		<actions>
+		</actions>
+		<profiles>
+			<profile>
+				<id1>Pefce9f3213dd3357f770d0626790cad8</id1>
+				<id2>P02be7dc34abfda406adc801879522add</id2>
+				<id3>36a32bf0769b8be31caae5ab7ea8aff4</id3>
+				<id4>3846c21dce5bb0e41ff20b2869f2aebd</id4>
+				<id5>P02be7dc34abfda406adc801879522add</id5>
+				<name>PPP_CompatiblewithAcrobat3</name>
+				<comment>PPP_CompatiblewithAcrobat3</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas pdfToolbox 4</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20080306170828+02&apos;00&apos;</creation>
+				<modification>D:20190924061555+02&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<pdfstdemb>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+					<afrelationship set_relationship="0"></afrelationship>
+				</pdfstdemb>
+				<wizard>
+					<check name="PRCWzDocu_RequiresAtLeast" check_severity="0">
+						<data name="AcroVers">0</data>
+					</check>
+					<check name="PRCWzDocu_SyntaxChecks" check_severity="0">
+					</check>
+				</wizard>
+				<rulesets>
+					<ruleset>Seb3989068541541a09c9b71317718503</ruleset>
+				</rulesets>
+				<fixupsets>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<metaprofs>
+		</metaprofs>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>

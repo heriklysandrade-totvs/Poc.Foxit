@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="8.0">
+	<package>
+		<id3>a9b5921d74d2d41848971d2457bef6b8</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+		</rulesets>
+		<fixups>
+			<fixup>
+				<id1>Fe5c1fba954aa6e8e0087a5b9ff7c2c11</id1>
+				<id2>Fb9f5a7c1f16256e8ac598d74c0f76099</id2>
+				<id3>005c566ee865a52c50733796bc9e84e9</id3>
+				<id4>e48becd4f42fb910437076170801bd39</id4>
+				<name>F_6_RemovePDFXinformation</name>
+				<comment>F_6_RemovePDFXinformation</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<fcfg>RemovePDFXKeys&#10;</fcfg>
+				<reportFailed></reportFailed>
+			</fixup>
+		</fixups>
+		<fixupsets>
+			<fixupset>
+				<id1>U2ce32f3832509b0cb52bb075131c4742</id1>
+				<id2>U5c345ca79a2cb70ed57a56bd0d77414e</id2>
+				<id3>a63d4299faca129e3f3c357a69a34337</id3>
+				<id4>20f7b9b8d698a76b1e5c7bf202c4a8fb</id4>
+				<name>UUUU_FIXUPSET_DEF_NAME</name>
+				<comment>UUUU_FIXUPSET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<fixups>
+					<fixup>Fe5c1fba954aa6e8e0087a5b9ff7c2c11</fixup>
+				</fixups>
+			</fixupset>
+		</fixupsets>
+		<profiles>
+			<profile>
+				<id1>P7d953208d1228e1485ca03acec458d4f</id1>
+				<id2>Pefaa9fa5d45aa84cba0a629b8c66cd2f</id2>
+				<id3>ea3ea25f09c9ca00690404da039e1b46</id3>
+				<id4>9cdc7d713cae43db3933a859456c39e6</id4>
+				<name>P_6_RemovePDFXinformation</name>
+				<comment>P_6_RemovePDFXinformation</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas pdfToolbox 4</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20071220095744+01&apos;00&apos;</creation>
+				<modification>D:20090218151918+01&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<wizard>
+				</wizard>
+				<rulesets>
+				</rulesets>
+				<fixupsets>
+					<fixupset>U2ce32f3832509b0cb52bb075131c4742</fixupset>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>

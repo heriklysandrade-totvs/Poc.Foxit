@@ -33,6 +33,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ResourceImages.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\ResourcePDFs.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourcePDFs.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -44,11 +49,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceImages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ResourcePDFs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcePDFs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Engines\Linux\" />
-    <Folder Include="Engines\Windows\" />
+    <Folder Include="Engines\Compliance\Linux\" />
+    <Folder Include="Engines\Compliance\Temp\" />
+    <Folder Include="Engines\Compliance\Windows\" />
+    <Folder Include="Engines\HtmlConversion\Linux\" />
+    <Folder Include="Engines\HtmlConversion\Windows\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>

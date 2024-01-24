@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="8.0">
+	<package>
+		<id3>600b3346fa481ed46bb718178a61c362</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+		</rulesets>
+		<fixups>
+		</fixups>
+		<fixupsets>
+		</fixupsets>
+		<profiles>
+			<profile>
+				<id1>P83011e10abfa66e897b71adf2a155238</id1>
+				<id2>Pbba0e7036b58e6986e89f463db8fc737</id2>
+				<id3>b82b2ad248dd72a35433f4ad09463c3b</id3>
+				<id4>126a5be457edf1b313bb8f3494c00e8c</id4>
+				<name>P_6_VerifycompliancewithPDFX5pg</name>
+				<comment>P_6_VerifycompliancewithPDFX5pg</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas pdfToolbox 4</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20071115101732+01&apos;00&apos;</creation>
+				<modification>D:20090218151918+01&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<wizard>
+					<check name="PRCWzXComp_PDFDocument" check_severity="0">
+						<data name="PDFX1A2001">0</data>
+						<data name="PDFX1A2003">0</data>
+						<data name="PDFX32002">0</data>
+						<data name="PDFX32003">0</data>
+						<data name="PDFX4">0</data>
+						<data name="PDFX4p">0</data>
+						<data name="PDFX5g">0</data>
+						<data name="PDFX5n">0</data>
+						<data name="PDFX5pg">1</data>
+					</check>
+				</wizard>
+				<rulesets>
+				</rulesets>
+				<fixupsets>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="10.0">
+	<package>
+		<id3>7eb35c463c70f2d34b10599821254426</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<conditions>
+		</conditions>
+		<rules>
+		</rules>
+		<rulesets>
+		</rulesets>
+		<fixups>
+		</fixups>
+		<fixupsets>
+		</fixupsets>
+		<profiles>
+			<profile>
+				<id1>P6879f0cab5f415aa2eb522d4c7db4716</id1>
+				<id2>P6906a988d82f78ebb4fef4c84d55f976</id2>
+				<id3>37a11fb4e00909353a54ef6b85fbb1d2</id3>
+				<id4>b63e7c6e87b4a0243aba61ac41eb2adf</id4>
+				<name>P_6_VerifycompliancewithPDFX4</name>
+				<comment>P_6_VerifycompliancewithPDFX4</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas software</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20110620103012+02&apos;00&apos;</creation>
+				<modification>D:20110620103012+02&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<wizard>
+					<check name="PRCWzXComp_PDFDocument" check_severity="0">
+						<data name="PDFX1A2001">0</data>
+						<data name="PDFX1A2003">0</data>
+						<data name="PDFX32002">0</data>
+						<data name="PDFX32003">0</data>
+						<data name="PDFX4">1</data>
+						<data name="PDFX4p">0</data>
+						<data name="PDFX5g">0</data>
+						<data name="PDFX5n">0</data>
+						<data name="PDFX5pg">0</data>
+					</check>
+				</wizard>
+				<rulesets>
+				</rulesets>
+				<fixupsets>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>

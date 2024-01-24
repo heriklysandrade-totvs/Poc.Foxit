@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pdfpreflight version="16.0">
+	<package>
+		<id3>4aaa421241819def96f7311a7b442e33</id3>
+		<pdfxoutintentlist>
+		</pdfxoutintentlist>
+		<iccprofilelist>
+		</iccprofilelist>
+		<ccpolicies>
+		</ccpolicies>
+		<occdsetups>
+		</occdsetups>
+		<curves>
+		</curves>
+		<fspolicies>
+		</fspolicies>
+		<resources>
+		</resources>
+		<variables>
+		</variables>
+		<conditions>
+			<condition>
+				<id1>C92923a1321e0f9a0488dd4372ca738b7</id1>
+				<id2>Cb029f144e3b6f6958e2cec5b7c74daf0</id2>
+				<id3>c0124b423d2bcc2d0076ddfa01e152b6</id3>
+				<id4>c7c28429f30bcd9c0cf68d6b6b8d4b2f</id4>
+				<id5>Cb029f144e3b6f6958e2cec5b7c74daf0</id5>
+				<name></name>
+				<comment></comment>
+				<flags user_units="1" edit="1" visible="1"></flags>
+				<atom>
+					<group>Group::DOC</group>
+					<token>DOC::PDFVersion</token>
+					<operator>OP::greater</operator>
+					<data>
+						<num>
+							<value>1.4</value>
+							<tolerance>0</tolerance>
+						</num>
+					</data>
+				</atom>
+			</condition>
+		</conditions>
+		<rules>
+			<rule>
+				<id1>Rf2acf8b78dda98fa0337b8fcea76d0b5</id1>
+				<id2>R44c2225b7cdf91c72d88fa9d12578245</id2>
+				<id3>b4f1f1484acf1656578125ef7bddd5a5</id3>
+				<id4>c8dd29ff04e59008d5e96377bc625eb7</id4>
+				<id5>R44c2225b7cdf91c72d88fa9d12578245</id5>
+				<name>RRR_PDFversionnewerthan14</name>
+				<comment>RRR_PDFversionnewerthan14</comment>
+				<flags analysis="17" condition_logic="0" ignore_objects="0" edit="1" visible="1" dict="1"></flags>
+				<creation>D:20190924061755+02&apos;00&apos;</creation>
+				<modification>D:20190924061802+02&apos;00&apos;</modification>
+				<report_no_match></report_no_match>
+				<conditions>
+					<condition>C92923a1321e0f9a0488dd4372ca738b7</condition>
+				</conditions>
+			</rule>
+		</rules>
+		<rulesets>
+			<ruleset>
+				<id1>S497ab37c472fe8c5b87e06179bf2f20e</id1>
+				<id2>Sb546c0cdb9407047c4682c7a76a00418</id2>
+				<id3>22ea19d39cbbc0469b660706a4bcf3de</id3>
+				<id4>6dfc0f4b5217b746958fab2b6f2ca674</id4>
+				<id5>Sb546c0cdb9407047c4682c7a76a00418</id5>
+				<name>SSS_RULESET_DEF_NAME</name>
+				<comment>SSS_RULESET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<rules>
+					<rule check_severity="1" check_timing="2">Rf2acf8b78dda98fa0337b8fcea76d0b5</rule>
+				</rules>
+			</ruleset>
+		</rulesets>
+		<fixups>
+			<fixup>
+				<id1>Fade6213eb3295cf99520462a9e54df43</id1>
+				<id2>Fc4461cd1a3affac1f0c544cb2918a1d3</id2>
+				<id3>8acdc77d906260f2587387d4e8b67987</id3>
+				<id4>e2cd579eb4c73ec7eb8530c22457c2a2</id4>
+				<id5>Fc4461cd1a3affac1f0c544cb2918a1d3</id5>
+				<name>FFF_SaveasPDF14Acrobat5</name>
+				<comment>FFF_SaveasPDF14Acrobat5</comment>
+				<flags user_units="1" scope="16" edit="1" visible="1" dict="1"></flags>
+				<creation>D:20190924061755+02&apos;00&apos;</creation>
+				<modification>D:20190924061755+02&apos;00&apos;</modification>
+				<fcfgs>
+					<fcfg>
+						<ffeat>PDFVersion</ffeat>
+						<fparams>
+							<fparam>Acrobat5OrHigher</fparam>
+						</fparams>
+					</fcfg>
+					<fcfg>
+						<ffeat></ffeat>
+						<fparams>
+						</fparams>
+					</fcfg>
+				</fcfgs>
+				<reportFailed></reportFailed>
+			</fixup>
+			<fixup>
+				<id1>F4bdf9488df5b58561ba36e42cc0751b8</id1>
+				<id2>F2636cf55903137735ad6d4cd64110e1a</id2>
+				<id3>f704a08aa01de7947542de2f7acb6682</id3>
+				<id4>d00128fd76442c08781d4e7140f833d6</id4>
+				<id5>F2636cf55903137735ad6d4cd64110e1a</id5>
+				<name>FFF_Reducebitdepthfor16bitimagestobit</name>
+				<comment>FFF_Reducebitdepthfor16bitimagestobit</comment>
+				<flags user_units="1" scope="16" edit="1" visible="1" dict="1"></flags>
+				<creation>D:20190924061755+02&apos;00&apos;</creation>
+				<modification>D:20190924061755+02&apos;00&apos;</modification>
+				<fcfgs>
+					<fcfg>
+						<ffeat>ReduceImageBitDepth</ffeat>
+						<fparams>
+							<fparam>None</fparam>
+						</fparams>
+					</fcfg>
+					<fcfg>
+						<ffeat></ffeat>
+						<fparams>
+						</fparams>
+					</fcfg>
+				</fcfgs>
+				<reportFailed></reportFailed>
+			</fixup>
+			<fixup>
+				<id1>F5d6996462281b80c0029c71a94157422</id1>
+				<id2>Ff40f9f3cb868a3fab5f8317dbdae6302</id2>
+				<id3>af315af35309d87f1a6d19e6879c0176</id3>
+				<id4>d0f8cea6b57e0c277b489e204038568f</id4>
+				<id5>Ff40f9f3cb868a3fab5f8317dbdae6302</id5>
+				<name>FFF_Discardhiddenlayercontentandflattenvisiblelayers</name>
+				<comment>FFF_Discardhiddenlayercontentandflattenvisiblelayers</comment>
+				<flags user_units="1" scope="16" edit="1" visible="1" dict="1"></flags>
+				<creation>D:20190924061755+02&apos;00&apos;</creation>
+				<modification>D:20190924061755+02&apos;00&apos;</modification>
+				<fcfgs>
+					<fcfg>
+						<ffeat>DscdHdnLyCntFltnVsblLyrs</ffeat>
+						<fparams>
+						</fparams>
+					</fcfg>
+					<fcfg>
+						<ffeat></ffeat>
+						<fparams>
+						</fparams>
+					</fcfg>
+				</fcfgs>
+				<reportFailed></reportFailed>
+			</fixup>
+		</fixups>
+		<fixupsets>
+			<fixupset>
+				<id1>U24e752c8379511ba10189be477a253cf</id1>
+				<id2>U7f2a60bc643bba3a5c0ac10890106be3</id2>
+				<id3>04f3fbf2767b9442996995e4e3b371ef</id3>
+				<id4>82b2c192409b3013140987a36ffdc447</id4>
+				<id5>U7f2a60bc643bba3a5c0ac10890106be3</id5>
+				<name>UUUU_FIXUPSET_DEF_NAME</name>
+				<comment>UUUU_FIXUPSET_DEF_NAME</comment>
+				<flags edit="1" visible="1" dict="1"></flags>
+				<fixups>
+					<fixup>Fade6213eb3295cf99520462a9e54df43</fixup>
+					<fixup>F4bdf9488df5b58561ba36e42cc0751b8</fixup>
+					<fixup>F5d6996462281b80c0029c71a94157422</fixup>
+				</fixups>
+			</fixupset>
+		</fixupsets>
+		<actions>
+		</actions>
+		<profiles>
+			<profile>
+				<id1>Pa27853b7a8fc603603df58a9152389ab</id1>
+				<id2>P3a9e3194da264b58c3ad663e7d9fe6ae</id2>
+				<id3>a0d84c3a86d03748ce033940014005b8</id3>
+				<id4>330dac27f63409f0a9248fa98c800d59</id4>
+				<id5>P3a9e3194da264b58c3ad663e7d9fe6ae</id5>
+				<name>PPP_CompatiblewithAcrobat5</name>
+				<comment>PPP_CompatiblewithAcrobat5</comment>
+				<flags edit="0" visible="1" dict="1"></flags>
+				<metalist>
+					<metadata>
+						<metakey>author</metakey>
+						<metavalue>callas pdfToolbox 4</metavalue>
+					</metadata>
+					<metadata>
+						<metakey>email</metakey>
+						<metavalue>support@callassoftware.com</metavalue>
+					</metadata>
+				</metalist>
+				<creation>D:20080306170853+02&apos;00&apos;</creation>
+				<modification>D:20190924061802+02&apos;00&apos;</modification>
+				<pdfstd>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+				</pdfstd>
+				<pdfstdemb>
+					<pdfx convert="0"></pdfx>
+					<pdfa convert="0"></pdfa>
+					<pdfe convert="0"></pdfe>
+					<outcond></outcond>
+					<trapped>0</trapped>
+					<oioptions>0</oioptions>
+					<afrelationship set_relationship="0"></afrelationship>
+				</pdfstdemb>
+				<wizard>
+					<check name="PRCWzDocu_RequiresAtLeast" check_severity="0">
+						<data name="AcroVers">2</data>
+					</check>
+					<check name="PRCWzDocu_SyntaxChecks" check_severity="0">
+					</check>
+				</wizard>
+				<rulesets>
+					<ruleset>S497ab37c472fe8c5b87e06179bf2f20e</ruleset>
+				</rulesets>
+				<fixupsets>
+					<fixupset>U24e752c8379511ba10189be477a253cf</fixupset>
+				</fixupsets>
+			</profile>
+		</profiles>
+		<metaprofs>
+		</metaprofs>
+		<profgroups>
+		</profgroups>
+	</package>
+</pdfpreflight>
